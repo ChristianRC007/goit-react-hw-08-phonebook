@@ -1,17 +1,21 @@
-import Container from './components/Container';
-import ContactForm from './components/ContactForm';
-import ContactList from './components/ContactList';
-import Filter from './components/Filter';
+import { Route, Switch } from 'react-router-dom';
+import Register from './components/Register';
+import Contacts from './components/Contacts';
+import AppBar from './components/AppBar';
+import Login from './components/Login';
+import HomePage from './components/HomePage/HomePage';
 
 const App = () => {
   return (
-    <Container>
-      <h1 className="title">Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </Container>
+    <>
+      <AppBar />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/contacts" component={Contacts} />
+      </Switch>
+    </>
   );
 };
 
