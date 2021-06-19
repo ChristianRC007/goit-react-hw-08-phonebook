@@ -1,9 +1,10 @@
-function UserMenu({ avatar, email }) {
-  console.log(avatar);
+function UserMenu({ avatar, email, onLogout }) {
   return (
     <div>
       <span>{email}</span>
-      <button type="button">Logout</button>
+      <button type="button" onClick={onLogout}>
+        Logout
+      </button>
     </div>
   );
 }

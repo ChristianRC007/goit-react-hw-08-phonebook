@@ -47,7 +47,7 @@ class Register extends Component {
           <input
             type="password"
             name="password"
-            pattern="^(?=.{8,})"
+            // pattern="(?=.{7,})"
             title="Password should be at least 7 characters"
             value={this.state.password}
             onChange={this.handleChange}

@@ -1,49 +1,42 @@
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
-import {
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  changeFilter,
-} from './phonebook-actions';
-
-// const initialState = [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-// ];
+import phonebookActions from './phonebook-actions';
+import phonebookOperations from './phonebook-operations';
 
 const contacts = createReducer([], {
-  [getContactsSuccess]: (_, { payload }) => payload,
-  [addContactSuccess]: (state, { payload }) => [...state, payload],
-  [deleteContactSuccess]: (state, { payload }) =>
+  [phonebookOperations.getContacts.fulfilled]: (_, { payload }) => payload,
+  [phonebookOperations.addContact.fulfilled]: (state, { payload }) => [
+    ...state,
+    payload,
+  ],
+  [phonebookOperations.deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 
 const filter = createReducer('', {
-  [changeFilter]: (_, { payload }) => payload,
+  [phonebookActions.changeFilter]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
-  [getContactsRequest]: () => true,
-  [getContactsSuccess]: () => false,
-  [getContactsError]: () => false,
-  [addContactRequest]: () => true,
-  [addContactSuccess]: () => false,
-  [addContactError]: () => false,
-  [deleteContactRequest]: () => true,
-  [deleteContactSuccess]: () => false,
-  [deleteContactError]: () => false,
+  [phonebookOperations.getContacts.pending]: () => true,
+  [phonebookOperations.getContacts.fulfilled]: () => false,
+  [phonebookOperations.getContacts.rejected]: () => false,
+  [phonebookOperations.addContact.pending]: () => true,
+  [phonebookOperations.addContact.fulfilled]: () => false,
+  [phonebookOperations.addContact.rejected]: () => false,
+  [phonebookOperations.deleteContact.pending]: () => true,
+  [phonebookOperations.deleteContact.fulfilled]: () => false,
+  [phonebookOperations.deleteContact.rejected]: () => false,
+});
+
+const error = createReducer(null, {
+  [phonebookOperations.getContacts.rejected]: (_, { error }) => error.message,
+  [phonebookOperations.addContact.rejected]: (_, { error }) => error.message,
+  [phonebookOperations.deleteContact.rejected]: (_, { error }) => error.message,
 });
 
 export default combineReducers({
   contacts,
   filter,
   loading,
+  error,
 });

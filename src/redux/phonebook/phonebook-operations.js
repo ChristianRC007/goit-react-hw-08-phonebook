@@ -1,44 +1,28 @@
 import axios from 'axios';
-import {
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-} from './phonebook-actions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const getContacts = () => dispatch => {
-  dispatch(getContactsRequest());
+const getContacts = createAsyncThunk('phonebook/getContacts', async () => {
+  const { data } = await axios.get('/contacts');
 
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(getContactsSuccess(data)))
-    .catch(error => dispatch(getContactsError(error)));
-};
+  return data;
+});
 
-const addContact = ({ name, number }) => dispatch => {
-  const contact = { name, number };
+const addContact = createAsyncThunk(
+  'phonebook/addContact',
+  async ({ name, number }) => {
+    const contact = { name, number };
 
-  dispatch(addContactRequest());
+    const { data } = await axios.post('/contacts', contact);
 
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
-};
+    return data;
+  },
+);
 
-const deleteContact = id => dispatch => {
-  dispatch(deleteContactRequest());
+const deleteContact = createAsyncThunk('phonebook/deleteContact', async id => {
+  const { data } = await axios.delete(`/contacts/${id}`);
 
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
-};
+  return data;
+});
 
 // eslint-disable-next-line
 export default { getContacts, addContact, deleteContact };

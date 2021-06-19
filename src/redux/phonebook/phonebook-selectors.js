@@ -1,9 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-export const getContacts = state => state.phonebook.contacts;
-export const getFilter = state => state.phonebook.filter;
-export const getLoading = state => state.phonebook.loading;
-export const getFilteredContacts = createSelector(
+const getContacts = state => state.phonebook.contacts;
+const getFilter = state => state.phonebook.filter;
+const getLoading = state => state.phonebook.loading;
+const getFilteredContacts = createSelector(
   [getContacts, getFilter],
   (contacts, filter) => {
     const normalizedContact = filter.toLowerCase();
@@ -13,3 +13,6 @@ export const getFilteredContacts = createSelector(
     );
   },
 );
+
+// eslint-disable-next-line
+export default { getContacts, getFilter, getLoading, getFilteredContacts };

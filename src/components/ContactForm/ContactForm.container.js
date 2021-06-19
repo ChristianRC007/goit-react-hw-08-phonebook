@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import { phonebookOperations, getContacts } from '../../redux/phonebook';
+import { phonebookOperations, phonebookSelectors } from '../../redux/phonebook';
 import ContactForm from './ContactForm';
 
 const mapStateToProps = state => ({
-  allContacts: getContacts(state),
+  allContacts: phonebookSelectors.getContacts(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: contact => dispatch(phonebookOperations.addContact(contact)),
-});
+const mapDispatchToProps = {
+  onSubmit: phonebookOperations.addContact,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

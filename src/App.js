@@ -1,11 +1,16 @@
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Register from './components/Register';
 import Contacts from './components/Contacts';
 import AppBar from './components/AppBar';
 import Login from './components/Login';
 import HomePage from './components/HomePage/HomePage';
+import { connect } from 'react-redux';
+import { authOperations } from './redux/auth';
 
-const App = () => {
+const App = ({ onGetCurrentUser }) => {
+  useEffect(() => onGetCurrentUser());
+
   return (
     <>
       <AppBar />
@@ -19,4 +24,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = {
+  onGetCurrentUser: authOperations.getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);
