@@ -1,8 +1,8 @@
-function UserMenu() {
+function UserMenu({ avatar, email }) {
+  console.log(avatar);
   return (
     <div>
-      <img scr="/" alt="lol" />
-      <span>Weclome</span>
+      <span>{email}</span>
       <button type="button">Logout</button>
     </div>
   );
