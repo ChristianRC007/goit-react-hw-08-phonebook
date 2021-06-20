@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Navigation.scss';
 
-function Navigation() {
+function Navigation({ isAuthenticated }) {
   return (
     <nav>
       <NavLink
@@ -12,14 +12,16 @@ function Navigation() {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/contacts"
-        exact
-        className="nav__link"
-        activeClassName="nav__link--active"
-      >
-        Contacts
-      </NavLink>
+      {isAuthenticated && (
+        <NavLink
+          to="/contacts"
+          exact
+          className="nav__link"
+          activeClassName="nav__link--active"
+        >
+          Contacts
+        </NavLink>
+      )}
     </nav>
   );
 }

@@ -8,8 +8,8 @@ const contacts = createReducer([], {
     ...state,
     payload,
   ],
-  [phonebookOperations.deleteContact.fulfilled]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
+  [phonebookOperations.deleteContact.fulfilled]: (state, { meta }) =>
+    state.filter(({ id }) => id !== meta.arg),
 });
 
 const filter = createReducer('', {

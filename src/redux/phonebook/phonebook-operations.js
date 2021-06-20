@@ -19,9 +19,7 @@ const addContact = createAsyncThunk(
 );
 
 const deleteContact = createAsyncThunk('phonebook/deleteContact', async id => {
-  const { data } = await axios.delete(`/contacts/${id}`);
-
-  return data;
+  await axios.delete(`/contacts/${id}`);
 });
 
 // eslint-disable-next-line
