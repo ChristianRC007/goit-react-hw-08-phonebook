@@ -17,8 +17,8 @@ class ContactList extends Component {
         <div className="contact__loader">
           {isLoading && (
             <Loader
-              type="Bars"
-              color="#000000"
+              type="Oval"
+              color="#b5b5b3"
               height={100}
               width={100}
               timeout={3000}

@@ -1,8 +1,19 @@
+import Container from '../Container';
+
+import './HomePage.scss';
+
 function HomePage() {
   return (
-    <div>
-      <h1>This is homepage!!!</h1>
-    </div>
+    <Container>
+      <h1 className="title">The PhoneBook</h1>
+      <p className="title__text">
+        the <span className="title__word">simpliest</span> phone book you can
+        ever get
+      </p>
+      <a className="title__link" href="https://github.com/ChristianRC007">
+        github.com/ChristianRC007
+      </a>
+    </Container>
   );
 }
 

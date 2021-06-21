@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import Container from '../Container';
+import './Register.scss';
 
 class Register extends Component {
   state = {
@@ -21,41 +23,52 @@ class Register extends Component {
 
   render() {
     return (
-      <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <label>
-          <span>Name</span>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <label>
-          <span>E-mail</span>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <label>
-          <span>Password</span>
-          <input
-            type="password"
-            name="password"
-            // pattern="(?=.{7,})"
-            title="Password should be at least 7 characters"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <button type="submit">Register</button>
-      </form>
+      <Container>
+        <form
+          className="register-form"
+          autoComplete="off"
+          onSubmit={this.handleSubmit}
+        >
+          <label>
+            <input
+              className="register-input"
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+              placeholder="Name"
+              required
+            />
+          </label>
+          <label>
+            <input
+              className="register-input"
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+              placeholder="E-mail"
+              required
+            />
+          </label>
+          <label>
+            <input
+              className="register-input"
+              type="password"
+              name="password"
+              // pattern="(?=.{7,})"
+              title="Password should be at least 7 characters"
+              value={this.state.password}
+              onChange={this.handleChange}
+              placeholder="Password"
+              required
+            />
+          </label>
+          <button className="register-btn" type="submit">
+            Register
+          </button>
+        </form>
+      </Container>
     );
   }
 }

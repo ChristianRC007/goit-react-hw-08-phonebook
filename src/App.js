@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Register from './components/Register';
-import Contacts from './components/Contacts';
-import AppBar from './components/AppBar';
-import Login from './components/Login';
-import HomePage from './components/HomePage';
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
 import { connect } from 'react-redux';
 import { authOperations } from './redux/auth';
+import AppBar from './components/AppBar';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+
+const HomePage = lazy(() => import('./components/HomePage'));
+const Register = lazy(() => import('./components/Register'));
+const Login = lazy(() => import('./components/Login'));
+const Contacts = lazy(() => import('./components/Contacts'));
 
 const App = ({ onGetCurrentUser }) => {
   useEffect(() => {
@@ -18,26 +19,28 @@ const App = ({ onGetCurrentUser }) => {
   return (
     <>
       <AppBar />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <PublicRoute
-          path="/register"
-          restricted
-          component={Register}
-          redirectTo="/contacts"
-        />
-        <PublicRoute
-          path="/login"
-          restricted
-          component={Login}
-          redirectTo="/contacts"
-        />
-        <PrivateRoute
-          path="/contacts"
-          component={Contacts}
-          redirectTo="/login"
-        />
-      </Switch>
+      <Suspense fallback={null}>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <PublicRoute
+            path="/register"
+            restricted
+            component={Register}
+            redirectTo="/contacts"
+          />
+          <PublicRoute
+            path="/login"
+            restricted
+            component={Login}
+            redirectTo="/contacts"
+          />
+          <PrivateRoute
+            path="/contacts"
+            component={Contacts}
+            redirectTo="/login"
+          />
+        </Switch>
+      </Suspense>
     </>
   );
 };

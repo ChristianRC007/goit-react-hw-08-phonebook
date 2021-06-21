@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { phonebookActions, phonebookSelectors } from '../../redux/phonebook';
+import { phonebookActions, phonebookSelectors } from '../../../redux/phonebook';
 import Filter from './Filter';
 
 const mapStateToProps = state => ({

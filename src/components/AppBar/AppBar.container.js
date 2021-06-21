@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import AppBar from './AppBar';
 import { authSelectors } from '../../redux/auth';
+import AppBar from './AppBar';
 
 const mapStateToProps = state => ({
   isAuthenticated: authSelectors.getIsAuthenticated(state),

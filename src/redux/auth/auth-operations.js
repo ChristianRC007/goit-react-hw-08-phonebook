@@ -36,10 +36,6 @@ const getCurrentUser = createAsyncThunk(
       auth: { token: persistedToken },
     } = getState();
 
-    if (!persistedToken) {
-      return;
-    }
-
     token.set(persistedToken);
 
     const { data } = await axios.get('/users/current');

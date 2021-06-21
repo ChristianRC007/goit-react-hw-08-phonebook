@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
-import { phonebookOperations, phonebookSelectors } from '../../redux/phonebook';
+import {
+  phonebookOperations,
+  phonebookSelectors,
+} from '../../../redux/phonebook';
 import ContactForm from './ContactForm';
 
 const mapStateToProps = state => ({

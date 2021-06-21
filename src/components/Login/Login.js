@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import Container from '../Container';
+
+import './Login.scss';
 
 class Login extends Component {
   state = {
@@ -20,29 +23,39 @@ class Login extends Component {
 
   render() {
     return (
-      <form autoComplete="off" onSubmit={this.handleSubmit}>
-        <label>
-          <span>E-mail</span>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <label>
-          <span>Password</span>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
+      <Container>
+        <form
+          className="login-form"
+          autoComplete="off"
+          onSubmit={this.handleSubmit}
+        >
+          <label>
+            <input
+              className="login-input"
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+              placeholder="E-mail"
+              required
+            />
+          </label>
+          <label>
+            <input
+              className="login-input"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              placeholder="Password"
+              required
+            />
+          </label>
+          <button className="login-btn" type="submit">
+            Login
+          </button>
+        </form>
+      </Container>
     );
   }
 }

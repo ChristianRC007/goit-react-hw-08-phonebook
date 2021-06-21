@@ -1,14 +1,15 @@
-import ContactForm from '../ContactForm';
-import ContactList from '../ContactList';
-import Filter from '../Filter';
+import ContactForm from './ContactForm';
+import ContactList from './ContactList';
+import Filter from './Filter';
+import Container from '../Container';
 
 function Contacts() {
   return (
-    <div>
+    <Container>
       <ContactForm />
       <Filter />
       <ContactList />
-    </div>
+    </Container>
   );
 }
 

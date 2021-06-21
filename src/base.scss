@@ -1,5 +1,27 @@
+body {
+  background-image: linear-gradient(
+      90deg,
+      rgba(61, 76, 116, 0.7) 0%,
+      rgba(61, 76, 116, 0.7) 50%,
+      rgba(61, 76, 116, 0.7) 100%
+    ),
+    url(./images/booth.jpg);
+  background-size: cover;
+  background-position: top left;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
 .title {
   animation: transitionIn 500ms;
+
+  &__text {
+    animation: transitionIn 500ms;
+  }
+
+  &__link {
+    animation: transitionIn 500ms;
+  }
 }
 
 @keyframes transitionIn {

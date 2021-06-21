@@ -1,15 +1,16 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import App from './App';
+
 import 'modern-normalize/modern-normalize.css';
 import './base.scss';
-import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
         <BrowserRouter>
@@ -17,6 +18,6 @@ ReactDOM.render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root'),
 );
