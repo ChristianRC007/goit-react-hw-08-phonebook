@@ -2,6 +2,7 @@ import { useEffect, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authOperations } from './redux/auth';
+import PropTypes from 'prop-types';
 import AppBar from './components/AppBar';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
@@ -44,6 +45,8 @@ const App = ({ onGetCurrentUser }) => {
     </>
   );
 };
+
+App.propTypes = { onGetCurrentUser: PropTypes.func.isRequired };
 
 const mapDispatchToProps = {
   onGetCurrentUser: authOperations.getCurrentUser,

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from '../Container';
 
 import './Login.scss';
@@ -22,20 +23,19 @@ class Login extends Component {
   };
 
   render() {
+    const { handleChange, handleSubmit } = this;
+    const { email, password } = this.state;
+
     return (
       <Container>
-        <form
-          className="login-form"
-          autoComplete="off"
-          onSubmit={this.handleSubmit}
-        >
+        <form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
           <label>
             <input
               className="login-input"
               type="email"
               name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+              value={email}
+              onChange={handleChange}
               placeholder="E-mail"
               required
             />
@@ -45,8 +45,8 @@ class Login extends Component {
               className="login-input"
               type="password"
               name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
+              value={password}
+              onChange={handleChange}
               placeholder="Password"
               required
             />
@@ -59,5 +59,7 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = { onLogin: PropTypes.func.isRequired };
 
 export default Login;

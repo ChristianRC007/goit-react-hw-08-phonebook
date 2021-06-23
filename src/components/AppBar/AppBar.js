@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import AuthNav from './AuthNav';
 import Navigation from './Navigation';
 import UserMenu from './UserMenu';
@@ -15,5 +16,9 @@ function AppBar({ isAuthenticated }) {
     </Container>
   );
 }
+
+AppBar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default AppBar;

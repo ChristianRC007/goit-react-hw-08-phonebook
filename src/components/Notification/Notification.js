@@ -1,9 +1,9 @@
 import './Notification.scss';
 
-const Notification = () => {
+const Notification = ({children}) => {
   return (
     <div className="notification">
-      <p>This contact is already exist!</p>
+      <p>{children}</p>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 import './UserMenu.scss';
 
@@ -48,5 +48,10 @@ function UserMenu({ email, onLogout }) {
     </div>
   );
 }
+
+UserMenu.propTypes = {
+  email: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
 
 export default UserMenu;

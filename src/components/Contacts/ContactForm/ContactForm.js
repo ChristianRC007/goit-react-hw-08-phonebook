@@ -39,7 +39,6 @@ class ContactForm extends Component {
       <>
         <form className="form" onSubmit={handleSubmit}>
           <label className="form__lable">
-            <span className="form__lable__text">Name</span>
             <input
               className="form__input"
               type="text"
@@ -49,10 +48,10 @@ class ContactForm extends Component {
               required
               value={name}
               onChange={handleInputChange}
+              placeholder="Name"
             />
           </label>
           <label className="form__lable">
-            <span className="form__lable__text">Number</span>
             <input
               className="form__input"
               type="tel"
@@ -62,18 +61,22 @@ class ContactForm extends Component {
               required
               value={number}
               onChange={handleInputChange}
+              placeholder="Number"
             />
           </label>
           <button className="form__button" type="submit">
             Add contact
           </button>
         </form>
-        {isExist && <Notification />}
+        {isExist && <Notification>This contact is already exist!</Notification>}
       </>
     );
   }
 }
 
-ContactForm.propTypes = { onSubmit: PropTypes.func.isRequired };
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  allContacts: PropTypes.array.isRequired,
+};
 
 export default ContactForm;

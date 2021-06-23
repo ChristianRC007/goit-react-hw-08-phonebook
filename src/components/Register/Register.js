@@ -1,5 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from '../Container';
+
 import './Register.scss';
 
 class Register extends Component {
@@ -22,20 +24,23 @@ class Register extends Component {
   };
 
   render() {
+    const { handleChange, handleSubmit } = this;
+    const { name, email, password } = this.state;
+
     return (
       <Container>
         <form
           className="register-form"
           autoComplete="off"
-          onSubmit={this.handleSubmit}
+          onSubmit={handleSubmit}
         >
           <label>
             <input
               className="register-input"
               type="text"
               name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
+              value={name}
+              onChange={handleChange}
               placeholder="Name"
               required
             />
@@ -45,8 +50,8 @@ class Register extends Component {
               className="register-input"
               type="email"
               name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+              value={email}
+              onChange={handleChange}
               placeholder="E-mail"
               required
             />
@@ -56,10 +61,8 @@ class Register extends Component {
               className="register-input"
               type="password"
               name="password"
-              // pattern="(?=.{7,})"
-              title="Password should be at least 7 characters"
-              value={this.state.password}
-              onChange={this.handleChange}
+              value={password}
+              onChange={handleChange}
               placeholder="Password"
               required
             />
@@ -72,5 +75,7 @@ class Register extends Component {
     );
   }
 }
+
+Register.propTypes = { onRegister: PropTypes.func.isRequired };
 
 export default Register;

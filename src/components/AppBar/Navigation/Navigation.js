@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Navigation.scss';
 
 function Navigation({ isAuthenticated }) {
@@ -25,5 +26,9 @@ function Navigation({ isAuthenticated }) {
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default Navigation;

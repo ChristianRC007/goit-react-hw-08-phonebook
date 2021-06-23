@@ -1,36 +1,51 @@
 @import '../ContactForm/ContactForm.scss';
 
 .filter {
-  display: inline-flex;
-  flex-direction: column;
+ display: inline-flex;
 
-  margin-bottom: 40px;
+ margin-top: 100px;
+ margin-left: 100px;
+ padding: 10px 0;
 
   &__input {
-    @extend .form__input;
+    margin-right: 50px;
+    width: 650px;
 
-    margin-top: 20px;
+    font-size: 18px;
+  
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    transition: border-bottom 200ms linear;
+  
+    &::placeholder {
+      color: white;
+    }
+  
+    &:focus,
+    &:hover {
+      outline: none;
+      border-bottom: 1px solid #1269ff;
+
+      & + span {
+        border-bottom: 1px solid #1269ff;
+      }
+    }
   }
 
-  & span {
-    @extend .form__lable__text;
+  & > span {
+  border-bottom: 1px solid transparent;
+
+  transition: border 200ms linear;
+  cursor: pointer;
+  }
+
+  & > span > svg {
+    width: 25px;
+    height: 25px;
+
+    fill: white;
   }
 }
 
-.pop-enter {
-  transform: scale(0);
-}
-
-.pop-enter-active {
-  transform: scale(1);
-  transition: transform 200ms ease-in-out;
-}
-
-.pop-exit {
-  transform: scale(1);
-}
-
-.pop-exit-active {
-  transform: scale(0);
-  transition: transform 200ms ease-in-out;
-}
